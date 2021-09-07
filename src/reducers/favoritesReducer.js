@@ -1,7 +1,13 @@
+import {
+  ADD_FAVORITE,
+  REMOVE_FAVORITE,
+  TOGGLE_FAVORITE,
+} from "../actions/favoritesActions";
+
 const initialState = {
   favorites: [
     {
-      id: 0,
+      id: 123456,
       title: "The Godfather",
       director: "Francis Ford Coppola",
       metascore: 100,
@@ -15,12 +21,25 @@ const initialState = {
 
 const favoritesReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ADD_FAVORITE:
+      return {
+        ...state,
+        favorites: [...state.favorites, action.payload],
+      };
+
+    case REMOVE_FAVORITE:
+      return {
+        favorites: state.favorites.filter((item) => action.payload !== item.id),
+      };
+
+    case TOGGLE_FAVORITE:
+      return {
+        ...state,
+        displayFavorites: !state.displayFavorites,
+      };
+
     default:
       return state;
-    //   return {
-    //     ...state,
-    //     // favorites: [...state.favorites, action.payload],
-    //   };
   }
 };
 
