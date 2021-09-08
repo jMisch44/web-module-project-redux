@@ -5,24 +5,16 @@ import {
 } from "../actions/favoritesActions";
 
 const initialState = {
-  favorites: [
-    {
-      id: 123456,
-      title: "The Godfather",
-      director: "Francis Ford Coppola",
-      metascore: 100,
-      genre: "Drama",
-      description:
-        "War hero Michael is the prodigal son of aging but fearsome crime patriarch Don Vito Corleone. When Michael returns home only to be thrust into an all-too-familiar world of hitmen, corrupt cops, and simmering mafia rivalries, he is forced to choose between his own path and the Corleone family legacy.",
-    },
-  ],
+  favorites: [],
   displayFavorites: true,
 };
 
 const favoritesReducer = (state = initialState, action) => {
-  console.log(action, state);
   switch (action.type) {
     case ADD_FAVORITE:
+      if (state.favorites.find((movie) => movie.id === action.payload.id)) {
+        return state;
+      }
       return {
         ...state,
         favorites: [...state.favorites, action.payload],

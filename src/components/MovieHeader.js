@@ -17,7 +17,7 @@ const MovieHeader = (props) => {
         <div className="col-sm-6 headerBar">
           <div className="btn btn-sm btn-primary">
             <span onClick={handleToggleClick}>
-              {!props.displayFavorites ? "Hide" : "Show"} Favorites
+              {props.displayFavorites ? "Hide" : "Show"} Favorites
             </span>
           </div>
           <Link to="/movies" className="btn btn-sm btn-primary">
@@ -36,7 +36,7 @@ const MovieHeader = (props) => {
 const mapStateToProps = (state) => {
   return {
     appTitle: state.movieList.appTitle,
-    displayFavorites: state.displayFavorites,
+    displayFavorites: state.favorite.displayFavorites,
   };
 };
 
